@@ -1,4 +1,4 @@
-<evm_chain>:
+swell:
   target: prod
   outputs:
     dev:
