@@ -74,13 +74,15 @@ models:
         +enabled: true
       github_actions:
         +enabled: true
-      labels:
-        +enabled: true
-      observability:
-        +enabled: false
       prices:
         +enabled: true
       utils:
+        +enabled: true
+    decoder_package:
+      +enabled: false
+      abis:
+        +enabled: true
+      decoded_logs:
         +enabled: true
 
 vars:
@@ -126,35 +128,19 @@ vars:
 # Please visit https://github.com/FlipsideCrypto/fsc-evm/wiki for more information on required and optional variables
 
   ### GLOBAL VARIABLES BEGIN ###
+  
   ## REQUIRED
   GLOBAL_PROD_DB_NAME: "swell"
   GLOBAL_NODE_SECRET_PATH: "Vault/prod/swell/ankr/mainnet"
   GLOBAL_BLOCKS_PER_HOUR: 1800
+  GLOBAL_WRAPPED_ASSET_ADDRESS: '0x4200000000000000000000000000000000000006'
 
   ### GLOBAL VARIABLES END ###
 
-  BLOCKS_TRANSACTIONS_REALTIME_NEW_BUILD: True
-  RECEIPTS_REALTIME_NEW_BUILD: True
-  TRACES_REALTIME_NEW_BUILD: True
+  TRACES_FULL_RELOAD_START_BLOCK: 3000000
 
-  BLOCKS_TRANSACTIONS_HISTORY_NEW_BUILD: True
-  BLOCKS_TRANSACTIONS_HISTORY_SQL_LIMIT: 1000000
-  BLOCKS_TRANSACTIONS_PRODUCER_BATCH_SIZE: 50000
-  BLOCKS_TRANSACTIONS_WORKER_BATCH_SIZE: 10000
-
-  RECEIPTS_HISTORY_NEW_BUILD: True
-  RECEIPTS_HISTORY_SQL_LIMIT: 1000000
-  RECEIPTS_PRODUCER_BATCH_SIZE: 25000
-  RECEIPTS_WORKER_BATCH_SIZE: 5000
-
-  TRACES_HISTORY_NEW_BUILD: True
-  TRACES_HISTORY_SQL_LIMIT: 1000000
-  TRACES_PRODUCER_BATCH_SIZE: 1000
-  TRACES_WORKER_BATCH_SIZE: 5000
-
-  CONFIRM_BLOCKS_HISTORY_NEW_BUILD: True
-  CONFIRM_BLOCKS_HISTORY_SQL_LIMIT: 2500000
-  CONFIRM_BLOCKS_PRODUCER_BATCH_SIZE: 5000
-  CONFIRM_BLOCKS_WORKER_BATCH_SIZE: 25000
+  ## ABIS
+  BLOCK_EXPLORER_NAME: "SwellExplorer"
+  BLOCK_EXPLORER_ABI_URL: "https://explorer.swellnetwork.io/api/v2/smart-contracts/"
 
 #### FSC_EVM END ####
