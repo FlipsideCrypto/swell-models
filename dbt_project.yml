@@ -69,11 +69,19 @@ models:
       columns: true
     +on_schema_change: "append_new_columns"
     main_package:
-      +enabled: false # disable main_package by default, enabled other packages as needed
+      +enabled: false
       core:
-        +enabled: false # enable subpackages, as needed
+        +enabled: true
       github_actions:
+        +enabled: true
+      labels:
+        +enabled: true
+      observability:
         +enabled: false
+      prices:
+        +enabled: true
+      utils:
+        +enabled: true
 
 vars:
   "dbt_date:time_zone": GMT
@@ -105,7 +113,7 @@ vars:
 
     prod:
       API_INTEGRATION: AWS_SWELL_API_PROD_V2
-      EXTERNAL_FUNCTION_URI: 
+      EXTERNAL_FUNCTION_URI: y7m0kkmyb9.execute-api.us-east-1.amazonaws.com/prod/
       ROLES:
         - AWS_LAMBDA_SWELL_API # replace with the name of the chain
         - INTERNAL_DEV
@@ -119,6 +127,34 @@ vars:
 
   ### GLOBAL VARIABLES BEGIN ###
   ## REQUIRED
-  GLOBAL_PROD_DB_NAME: 'swell'
+  GLOBAL_PROD_DB_NAME: "swell"
+  GLOBAL_NODE_SECRET_PATH: "Vault/prod/swell/ankr/mainnet"
+  GLOBAL_BLOCKS_PER_HOUR: 1800
+
+  ### GLOBAL VARIABLES END ###
+
+  BLOCKS_TRANSACTIONS_REALTIME_NEW_BUILD: True
+  RECEIPTS_REALTIME_NEW_BUILD: True
+  TRACES_REALTIME_NEW_BUILD: True
+
+  BLOCKS_TRANSACTIONS_HISTORY_NEW_BUILD: True
+  BLOCKS_TRANSACTIONS_HISTORY_SQL_LIMIT: 1000000
+  BLOCKS_TRANSACTIONS_PRODUCER_BATCH_SIZE: 50000
+  BLOCKS_TRANSACTIONS_WORKER_BATCH_SIZE: 10000
+
+  RECEIPTS_HISTORY_NEW_BUILD: True
+  RECEIPTS_HISTORY_SQL_LIMIT: 1000000
+  RECEIPTS_PRODUCER_BATCH_SIZE: 25000
+  RECEIPTS_WORKER_BATCH_SIZE: 5000
+
+  TRACES_HISTORY_NEW_BUILD: True
+  TRACES_HISTORY_SQL_LIMIT: 1000000
+  TRACES_PRODUCER_BATCH_SIZE: 1000
+  TRACES_WORKER_BATCH_SIZE: 5000
+
+  CONFIRM_BLOCKS_HISTORY_NEW_BUILD: True
+  CONFIRM_BLOCKS_HISTORY_SQL_LIMIT: 2500000
+  CONFIRM_BLOCKS_PRODUCER_BATCH_SIZE: 5000
+  CONFIRM_BLOCKS_WORKER_BATCH_SIZE: 25000
 
 #### FSC_EVM END ####
