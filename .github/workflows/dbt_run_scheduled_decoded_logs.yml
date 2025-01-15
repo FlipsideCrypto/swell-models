@@ -1,11 +1,11 @@
-name: dbt_run_scheduled_curated
-run-name: dbt_run_scheduled_curated
+name: dbt_run_scheduled_decoded_logs
+run-name: dbt_run_scheduled_decoded_logs
 
 on:
   workflow_dispatch:
     branches:
       - "main"
-    
+
 env:
   DBT_PROFILES_DIR: ./
 
@@ -24,7 +24,7 @@ concurrency:
 jobs:
   run_dbt_jobs:
     runs-on: ubuntu-latest
-    environment: 
+    environment:
       name: workflow_prod
 
     steps:
@@ -40,6 +40,6 @@ jobs:
           pip install -r requirements.txt
           dbt deps
 
-      - name: Run Curated Models
+      - name: Update the silver and gold tables with the latest decoded logs
         run: |
-          dbt run -m "swell_models,tag:curated" "fsc_evm,tag:curated"
+          dbt run -m "fsc_evm,tag:bronze_decoded_logs" "fsc_evm,tag:silver_decoded_logs" "fsc_evm,tag:gold_decoded_logs"
