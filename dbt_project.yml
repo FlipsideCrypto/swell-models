@@ -78,12 +78,16 @@ models:
         +enabled: true
       utils:
         +enabled: true
+      labels:
+        +enabled: true
     decoder_package:
       +enabled: false
       abis:
         +enabled: true
       decoded_logs:
         +enabled: true
+    scores_package:
+      +enabled: true
 
 vars:
   "dbt_date:time_zone": GMT
