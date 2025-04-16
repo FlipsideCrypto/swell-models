@@ -46,4 +46,4 @@ jobs:
 
       - name: Run Recent Tests
         run: |
-          dbt test -m "fsc_evm,tag:recent_test" --exclude "fsc_evm,tag:ez_prices_model" "fsc_evm,tag:nft_core" 
+          dbt test -m "fsc_evm,tag:recent_test" --exclude "fsc_evm,tag:ez_prices_model" main_package.core.nft.tests 
