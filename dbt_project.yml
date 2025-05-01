@@ -82,7 +82,7 @@ models:
       observability:
         +enabled: true
       prices:
-        +enabled: true
+        +enabled: false
       utils:
         +enabled: true
     decoder_package:
@@ -94,7 +94,7 @@ models:
     curated_package:
       +enabled: false
       stats:
-        +enabled: true
+        +enabled: false
     scores_package:
       +enabled: true
 
