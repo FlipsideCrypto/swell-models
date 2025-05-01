@@ -82,7 +82,7 @@ models:
       observability:
         +enabled: true
       prices:
-        +enabled: false
+        +enabled: true
       utils:
         +enabled: true
     decoder_package:
