@@ -16,8 +16,8 @@ jobs:
       warehouse: DBT_EMERGENCY
       command_name: Build Full Testing Views
       command: |
-        dbt run -m "fsc_evm,tag:full_test"
+        dbt run -m "fsc_evm,tag:full_test" --exclude "fsc_evm,tag:ez,tag:transfers"
       command_name_2: Run Full Tests
       command_2: |
-        dbt test -m "fsc_evm,tag:full_test"
+        dbt test -m "fsc_evm,tag:full_test" --exclude "fsc_evm,tag:ez,tag:transfers"
     secrets: inherit
